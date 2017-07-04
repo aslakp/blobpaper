@@ -128,7 +128,7 @@ In the code, the grid is resolved s.t. $\Delta x\approx \lambda_d\approx 5\rho_s
 
 A number of different simulation are carried out to test the different scaling parameters. A common setup is such that the perturbation amplitude is $n_b=n_0$ with a temperature of $T_i=T_e=20 eV$, radius of $R_0=500\rho_s$ and blob width of $\sigma = 5 \rho_s$. To test the various scaling parameters, one parameters is varied while the others are fixed with the above quantities. The used values are; for radius of $R_0/\rho_s = {250,500,1000,2000}$; for perturbation $n_b/n_0 = {0.5,1,2,4}$; for width $\sigma/\rho_s = {2.5,5,10,20}$.
 
-The default grid is such that $x_{min}=-20\rho_S$, $x_{max}=80\rho_S$ and $-y_{min}=y_{max}=50\rho_s$, with a total of $512\times 512$ grid points. With this the blob is positioned at $\fd x_c = {0,0}$ so that the magnetic field at the center of the blob is $B_0$. Furthermore to alleviate computational requirements the mass ratio between the ions and electrons is $m_i/m_e=100$. The charge of the particles are $q_i=q_e$
+The default grid is such that $x_{min}=-20\rho_S$, $x_{max}=80\rho_S$ and $-y_{min}=y_{max}=37.5\rho_s$, with a total of $512\times 384$ grid points. With this the blob is positioned at $\fd x_c = {0,0}$ so that the magnetic field at the center of the blob is $B_0$. Furthermore, to alleviate computational requirements the mass ratio between the ions and electrons is $m_i/m_e=100$. The charge of the particles are $q_i=q_e$
 \section{Numerical Results}
 Checking the driving mechanism - potential and electric field - the blob moves - how does it scale - what about FLR effects.
 
@@ -138,15 +138,35 @@ Snapshots of the density evolution of blob simulation with the default values st
 
 \begin{figure*}[h]
   \includegraphics[trim=0mm 128mm 0mm 0mm,width=\textwidth]{Pictures/fourcontour.eps}
-  \caption{This is a tiger.}
+  \caption{Ion density profiles at $t\omega_{ci}={0,150,300,450}$}
+  \label{blob}
 \end{figure*}
 
-The radial driving mechanism is thought to be an initial dipole creation from the gradient in the magnetic field followed by an radial electrical drift. I.e. an overall effect of individual charged particle motion in the inhomogeneous magnetic field. Looking at the gyro-averaged potential of the blob it is seen that a dipole has en indeed appeared at the position of the blob. This in turn results in an electric field as seen in fig [figure with E-field]. The strengh of the electric field within the blob corresponds well with the radial velocity of the blob. 
+\begin{figure*}[h]
+  \includegraphics[trim=0mm 128mm 0mm 0mm,width=\textwidth]{Pictures/threephitot.eps}
+  \caption{Gyroaveraged potential at $t\omega_{ci}={6,150,300,450}$}
+  \label{pot}
+\end{figure*}
+
+\begin{figure*}[h]
+  \includegraphics[trim=0mm 128mm 0mm 0mm,width=\textwidth]{Pictures/eytot.eps}
+  \caption{Electric field in y-dir at $t\omega_{ci}={6,150,300,450}$}
+  \label{efield}
+\end{figure*}
+
+
+The radial driving mechanism is thought to be an initial dipole creation from the gradient in the magnetic field followed by an radial electrical drift. I.e. an overall effect of individual charged particle motion in the inhomogeneous magnetic field. Looking at fig. \ref{pot} we see the gyro-averaged potential at times $t\omega_{ci}={6,150,300,450}$. Comparing with figure \ref{blob} of the blob it is seen that a dipole has en indeed appeared at the position of the blob. 
+This potential yields an electric field as seen in fig \ref{efield} (y-component). It is seen that the field within the blob is pointing downwards which combining with the magnetic field pointing into the plane corresponds well with the outward radial propagation. Furthermore, the strengh of the electric field within the blob corresponds well with the radial velocity of the blob estimated to be $v_\perp \approx 0.1c_s$. 
 
 Furthermore, as the blob moves outwards we see a break in the poloidal symmetry of the blob with a movement in the $\grad \fd B\times \fd B$-direction (-y-direction). Note that this is in the opposite direction of what is seen in fluid simulations while consistent with results seen in [Hasegawa] and [Gingell?]. This symmetry breaking has been described in detail in [jens] and is in large part attributed to finite Larmor radius effects as discussed earlier. 
 
-Before we dive into the scaling dependence we look at the basis for the scaling we saw earlier, namely the quasi-neutrality condition. As mentioned, this is not fulfilled at every point in the domain, se particles are 'free' to move around. Instead we introduced a measure to estimate the level of quasi-neutrality. To test this we find the average and maximum deviation from neutrality in a given $\rho_s^2$ area. The result for the run in fig. [the one with the...] is seen in fig.  
+Before we dive into the scaling dependence we look at the basis for the scaling we saw earlier, namely the quasi-neutrality condition. As mentioned, this is not fulfilled at every point in the domain, se particles are 'free' to move around. Instead we introduced a measure to estimate the level of quasi-neutrality. To test this we find the average and maximum deviation from neutrality in a given $\rho_s^2$ area. The result for the run in fig. [the one with the...] is seen in fig. We see that on average (black dots) the charge seperation is below the threshold condition. For the maximum deviation we see that in general it is below the threshold, but with certain spikes breaking it. This does not seem to impose any changes to the overall blob behaviour. Overall this means that we can expect to meet the condition necessary for obtaining the scaling law presented in section !!INSERT!!
+x
 
+\begin{figure}[h]
+\center
+	\includegraphics[width=0.5\textwidth]{Pictures/quasineuwl.eps}
+\end{figure}
 
 
 
