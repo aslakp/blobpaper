@@ -11,6 +11,7 @@
 \usepackage{lipsum}
 \usepackage{abstract}
 \usepackage{multicol}
+\usepackage{subcaption}
 \usepackage[dvips,letterpaper,margin=0.75in,bottom=0.5in]{geometry}
  % Sets margins and page size
 \pagestyle{empty} % Removes page numbers
@@ -168,6 +169,25 @@ x
 	\includegraphics[width=0.5\textwidth]{Pictures/quasineuwl.eps}
 \end{figure}
 
+\begin{figure*}
+\centering
+\begin{subfigure}{.49\textwidth}
+	\centering
+	\includegraphics[trim={115mm 88mm 1mm 7mm},clip,width=1\linewidth]{Pictures/posxgrpewiitgt.eps}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+	\centering
+	\includegraphics[trim={115mm 88mm 1mm 7mm},clip,width=1\linewidth]{Pictures/xnormgrpewiitgt.eps}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+	\centering
+	\includegraphics[trim={115mm 88mm 1mm 7mm},clip,width=1\linewidth]{Pictures/posygrpewiitgt.eps}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+	\centering
+	\includegraphics[trim={115mm 88mm 1mm 7mm},clip,width=1\linewidth]{Pictures/ynormgrpewiitgt.eps}
+\end{subfigure}
+\end{figure*}
 
 
 
@@ -186,8 +206,6 @@ Awesome new code to show awesome results.
 %   \includegraphics[trim={115mm 88mm 1mm 7mm},clip,width=1\linewidth]{../figures/posxgrpewiitgt.eps}
 %   %\caption{Left shows the position in the x-direction (top) and y-direction (bottom). Right shows the $\sigma$ normalized position wrt $\gamma$ normalized time.}
 %
-%\end{column}
-%\begin{column}{0.40\textwidth}
 %
 %   \includegraphics[trim={115mm 88mm 1mm 7mm},clip,width=1\linewidth]{../figures/xnormgrpewiitgt.eps}
 %   %\caption{Left shows the velocities of the blob in the x-dir (top) and y-dir (bottom). Right shows the FLR effect measure of $y/x$ (top) and $V_y/V_x$ (bottom).}
@@ -199,16 +217,10 @@ Awesome new code to show awesome results.
 %
 %
 %
-%
-%
 %   \includegraphics[trim={115mm 88mm 1mm 7mm},clip,width=1\linewidth]{Pictures/posygrpewiitgt.eps}
 %   %\caption{Left shows the velocities of the blob in the x-dir (top) and y-dir (bottom). Right shows the FLR effect measure of $y/x$ (top) and $V_y/V_x$ (bottom).}
 %   
-%   
 %
-%
-%\end{column}
-%\begin{column}{0.40\textwidth}
 %
 %   \includegraphics[trim={115mm 88mm 1mm 7mm},clip,width=1\linewidth]{Pictures/ynormgrpewiitgt.eps}
 %   %\caption{Left shows the velocities of the blob in the x-dir (top) and y-dir (bottom). Right shows the FLR effect measure of $y/x$ (top) and $V_y/V_x$ (bottom).}
