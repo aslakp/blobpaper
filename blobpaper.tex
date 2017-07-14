@@ -62,26 +62,37 @@
 \theoremstyle{remark}
 \newtheorem*{rmk}{Remark}
 
-\begin{document}
 
+\title{Am i right and are you wrong?}
+
+\begin{document}
+\twocolumn[
+  \begin{@twocolumnfalse}
+    \maketitle
+    \begin{abstract}
+      {\lipsum[1-2]}
+    \end{abstract}
+  \end{@twocolumnfalse}
+]
 %\begin{multicols}{2}
 \section{Introduction}
-Blob are annoying account for much transport
-Why are PIC codes nice?
-\section{Stating the physical problem and expectations}
-Basic idea
-Purpose is to test blob dynamics and verify fluid scaling based on interchange motion. Furthermore, as the FLR effects are an inherent part of the gyromotion they are expected to occur naturally.
+The study of turbulence in the edge is of great importance in the goal to achieve stable edge/SOL conditions. One such turbulence phenomena are the so-called blob-filements, blobs for short. These structures of increased density and temperature, extend along the magnetic field lines and have been !!!!
 
-In this paper blobs are modelled as Gaussian perturbation in the density and some in the temperature on a uniform background:
+Many theoretical and numerical studies into the field of blob have relied on a fluid picture approach. These studies have been used to derive models and scaling laws for the motion perpendicular to the magnetic field. In this paper we investigate seeded blobs using a fully kinetic particle-in-cell (PIC) code which resolves individual particle motion. One major advantage os this approach is that the effects arising from the larmor motion of the particles is inherently present and so is expected to give a 'realistic' picture.
+
+
+\section{Stating the physical problem and expectations}
+
+In this paper we wish to model blobs numerically using advanced an advanced PIC code. These blobs are modelled as a Gaussian perturbation in the density of both ions and electrons, and for a few cases, also with a Gaussian temperature perturbation, both on a uniform background:
 \begin{equation}
 n(t=0) = n_0+ n_b\exp\left(-\frac{(\fd x-\fd x_c)^2}{2\sigma^2}\right)
 \end{equation}
-The blob is placed in a static inhomogeneous magnetic field given by:
+As blobs are found in the edge region/SOL in a tokamak we use an inhomogeneous static magnetic field as a the only background field:
 \begin{equation}
 \fd B = -\frac{B_0R_0}{R_0+x}{\fd {\hat{z}}}
 \end{equation}
-Here $B_0$ is the magnetic field at $R_0$ which is the distance of the blob from the center???????!!!!!!
-The gradient arising from this field leads to a grad-B drift of the ions and electrons causing a polarization of the blob in turn creating an electric field 
+Here $B_0$ is the magnetic field at $R_0$ which is some characteristic distance which can be compared to the distance from the main axis to the blob.
+This simple set-up leads to a instability since the gradient arising from the magnetic field leads to a grad-B drift of the ions and electrons. This in turn causes a polarization and hence electric field which leads to an $\fd {E\times B}$-drift 
 The problem has been analysed thoroughly using fluid theory and a velocity scaling for the radial propagation of the blob can be found from dimensional analysis of:
 \begin{equation}
 V_{\perp} \propto \gamma\sigma = c_s\sqrt{\frac{\sigma\Delta n}{R n_0}}
@@ -124,6 +135,8 @@ The grid is staggered in such a way that the electric field is shifted wrt. the 
 In the simulations the background density is set to be $n_0=10^{17}m^{-3}$ with a background magnetic field $B_0=1T$. Note that the density is some orders of magnitude smaller than typical densities found in fluid simulations and real worlds problems [cite?]. The reason for this is the computational constraints imposed by stability criteria of PIC codes where both the plasma frequency and the Debye length have to be resolved.
 
 
+
+
 Boundary condition.
 The boundary condition for the y-direction are periodic while for the x-direction a Neumann boundary for the electric potential is used and the particles are reflected according to [cite the one with boundary]. The magnetic field on the boundary is as prescribed above. Since the code is a 6th order code in the fields, a number of ghost points are needed outside the domain. The magnetic field is known beforehand due to it being constant.  The charge density is handled as mirror charges, making it possible to find the potential which is also mirrored. From this the electric field, the x-component is found with the ghost points being antisymmetric around zero wrt. the inside field. The y-component is simply reflected [IS THIS TOO DETAILED? PROBABLY].
 
@@ -133,28 +146,35 @@ A number of different simulation are carried out to test the different scaling p
 
 The default grid is such that $x_{min}=-20\rho_S$, $x_{max}=80\rho_S$ and $-y_{min}=y_{max}=37.5\rho_s$, with a total of $512\times 384$ grid points. With this the blob is positioned at $\fd x_c = {0,0}$ so that the magnetic field at the center of the blob is $B_0$. Furthermore, to alleviate computational requirements the mass ratio between the ions and electrons is $m_i/m_e=100$. The charge of the particles are $q_i=q_e$
 \section{Numerical Results}
+
+\begin{figure}[h]
+\center
+	\includegraphics[width=0.5\textwidth]{Pictures/quasineuwl.eps}
+	\label{quasi}
+\end{figure}
+
 Checking the driving mechanism - potential and electric field - the blob moves - how does it scale - what about FLR effects.
 
 To test scaling the scaling of the radial motion the blob seen in equation [insert eq.] several runs with varying perturbation amplitude, blob width, major radius and ion temperature. The ion temperature dependence is through the sound speed $c_s\propto \sqrt{1+\tau}$ where $\tau = Ti/T_e$.
 
 Snapshots of the density evolution of blob simulation with the default values stated above is seen in fig... As seen the seeded blob moves radially outwards and starts forming a plume like structure. This is similar to results seen in e.g. [jens, held etc.] and corresponds with what is expected for density inhomogeneities in an inhomogeneous magnetic field such as this. 
 
-\begin{figure*}[h]
-  \includegraphics[trim=0mm 128mm 0mm 0mm,width=\textwidth]{Pictures/fourcontour.eps}
-  \caption{Ion density profiles at $t\omega_{ci}={0,150,300,450}$}
+\begin{figure*}
+\begin{subfigure}{.99\textwidth}
+  \includegraphics[trim=0mm 130mm 0mm 6mm,width=\textwidth]{Pictures/fourcontour.eps}
+ % \caption{Ion density profiles at $t\omega_{ci}={0,150,300,450}$}
   \label{blob}
-\end{figure*}
-
-\begin{figure*}[h]
-  \includegraphics[trim=0mm 128mm 0mm 0mm,width=\textwidth]{Pictures/threephitot.eps}
-  \caption{Gyroaveraged potential at $t\omega_{ci}={6,150,300,450}$}
+\end{subfigure}
+\begin{subfigure}{.99\textwidth}
+  \includegraphics[trim=0mm 130mm 0mm 6mm,width=\textwidth]{Pictures/threephitot.eps}
+ % \caption{Gyroaveraged potential at $t\omega_{ci}={6,150,300,450}$}
   \label{pot}
-\end{figure*}
-
-\begin{figure*}[h]
-  \includegraphics[trim=0mm 128mm 0mm 0mm,width=\textwidth]{Pictures/eytot.eps}
-  \caption{Electric field in y-dir at $t\omega_{ci}={6,150,300,450}$}
+\end{subfigure}
+\begin{subfigure}{.99\textwidth}
+  \includegraphics[trim=0mm 130mm 0mm 6mm,width=\textwidth]{Pictures/eytot.eps}
+ % \caption{Electric field in y-dir at $t\omega_{ci}={6,150,300,450}$}
   \label{efield}
+\end{subfigure}
 \end{figure*}
 
 
@@ -163,29 +183,28 @@ This potential yields an electric field as seen in fig \ref{efield} (y-component
 
 Furthermore, as the blob moves outwards we see a break in the poloidal symmetry of the blob with a movement in the $\grad \fd B\times \fd B$-direction (-y-direction). Note that this is in the opposite direction of what is seen in fluid simulations while consistent with results seen in [Hasegawa] and [Gingell?]. This symmetry breaking has been described in detail in [jens] and is in large part attributed to finite Larmor radius effects as discussed earlier. 
 
-Before we dive into the scaling dependence we look at the basis for the scaling we saw earlier, namely the quasi-neutrality condition. As mentioned, this is not fulfilled at every point in the domain, se particles are 'free' to move around. Instead we introduced a measure to estimate the level of quasi-neutrality. To test this we find the average and maximum deviation from neutrality in a given $\rho_s^2$ area. The result for the run in fig. [the one with the...] is seen in fig. We see that on average (black dots) the charge seperation is below the threshold condition. For the maximum deviation we see that in general it is below the threshold, but with certain spikes breaking it. This does not seem to impose any changes to the overall blob behaviour. Overall this means that we can expect to meet the condition necessary for obtaining the scaling law presented in section !!INSERT!!
-x
 
-\begin{figure}[h]
-\center
-	\includegraphics[width=0.5\textwidth]{Pictures/quasineuwl.eps}
-\end{figure}
+Before we dive into the scaling dependence we look at the basis for the scaling we saw earlier, namely the quasi-neutrality condition. As mentioned, this is not fulfilled at every point in the domain, se particles are 'free' to move around. Instead we introduced a measure to estimate the level of quasi-neutrality. To test this we find the average and maximum deviation from neutrality in a given $\rho_s^2$ area. The result for the run in fig. \ref{blob} is seen in fig  \ref{quasi}. We see that on average (black dots) the charge seperation is below the threshold condition. For the maximum deviation we see that in general it is below the threshold, but with certain spikes breaking it. This does not seem to impose any changes to the overall blob behaviour. Overall this means that we can expect to meet the condition necessary for obtaining the scaling law presented in section !!INSERT!!.
+
+
+Normalizing by the interchange rate in the 
+top right we see that some match well.
 
 \begin{figure*}
 \centering
-\begin{subfigure}{.49\textwidth}
+\begin{subfigure}{.4\textwidth}
 	\centering
 	\includegraphics[trim={115mm 88mm 1mm 7mm},clip,width=1\linewidth]{Pictures/posxgrpewiitgt.eps}
 \end{subfigure}
-\begin{subfigure}{.49\textwidth}
+\begin{subfigure}{.4\textwidth}
 	\centering
 	\includegraphics[trim={115mm 88mm 1mm 7mm},clip,width=1\linewidth]{Pictures/xnormgrpewiitgt.eps}
 \end{subfigure}
-\begin{subfigure}{.49\textwidth}
+\begin{subfigure}{.4\textwidth}
 	\centering
 	\includegraphics[trim={115mm 88mm 1mm 7mm},clip,width=1\linewidth]{Pictures/posygrpewiitgt.eps}
 \end{subfigure}
-\begin{subfigure}{.49\textwidth}
+\begin{subfigure}{.4\textwidth}
 	\centering
 	\includegraphics[trim={115mm 88mm 1mm 7mm},clip,width=1\linewidth]{Pictures/ynormgrpewiitgt.eps}
 \end{subfigure}
@@ -197,14 +216,19 @@ x
 \centering
 %\caption{My caption}
 \label{my-label}
-\begin{adjustbox}{max width=0.7\textwidth}
-\begin{tabular}{|l|l|l|l|l|}
+\begin{adjustbox}{max width=0.49\textwidth}
+\begin{tabular}{|l|l|l|l|l|l|}
 \hline
-\begin{tabular}[c]{@{}l@{}}Perturb\\ $n_0$\end{tabular} & \begin{tabular}[c]{@{}l@{}}Width\\ $\rho_s$\end{tabular} & \begin{tabular}[c]{@{}l@{}}Temp ratio\\ $T_i/T_e$\end{tabular} & \begin{tabular}[c]{@{}l@{}}Gradient\\ $\rho_s$\end{tabular} & \begin{tabular}[c]{@{}l@{}}Gaussian temp\\ $(i,e)$\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Line- \\style      \end{tabular} &
+\begin{tabular}[c]{@{}l@{}}Perturb\\ $n_0$\end{tabular} & \begin{tabular}[c]{@{}l@{}}Width\\ $\rho_s$\end{tabular} & \begin{tabular}[c]{@{}l@{}}Temp \\ ratio\\ $T_i/T_e$\end{tabular} & \begin{tabular}[c]{@{}l@{}}Gradient\\ $\rho_s$\end{tabular} & \begin{tabular}[c]{@{}l@{}}Gaussian \\ temp\\ $(i,e)$\end{tabular} \\ \hline
+- &
 \cellcolor[HTML]{3166FF}{\color[HTML]{FFFFFF} $0.5$}    & \cellcolor[HTML]{32CB00}$2.5$                            & \cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} $0$}             & \cellcolor[HTML]{FD6864}$250$                               & \cellcolor[HTML]{FFFE65}$0,1$                                   \\ \hline
-\rowcolor[HTML]{9698ED} 
+$\cdots$
+%\rowcolor[HTML]{9698ED} 
 $1$                                                     & $5$                                                      & $1$                                                            & $500$                                                       & $0,0$                                                           \\ \hline
+$\cdot -$ &
 \cellcolor[HTML]{3166FF}{\color[HTML]{FFFFFF} $2$}      & \cellcolor[HTML]{32CB00}$10$                             & \cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} $3$}             & \cellcolor[HTML]{FD6864}$1000$                              & \cellcolor[HTML]{FFFE65}$1,0$                                   \\ \hline
+$\cdots -$     &
 \cellcolor[HTML]{3166FF}{\color[HTML]{FFFFFF} $4$}      & \cellcolor[HTML]{32CB00}$20$                             & \cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} $7$}             & \cellcolor[HTML]{FD6864}$2000$                              & \cellcolor[HTML]{FFFE65}$1,1$                                   \\ \hline
 \end{tabular}
 \end{adjustbox}
@@ -228,7 +252,7 @@ The scaling was a general expression for movement perpendicular to the magnetic 
 We see good scaling results - FLR effects in the y-dir - not the same as all fluid papers.
 
 \section{Conclusion}
-Awesome new code to show awesome results.
+We have numerically investigated the  
 
 
 %\end{multicols}
